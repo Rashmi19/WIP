@@ -22,12 +22,16 @@ public class CustomerDAO {
 		
 	}
 	
-
+/**
+ * This method creates the customer in DB
+ * @param customer
+ * @throws SQLException
+ */
 	public void createCustomer(Customer customer) throws SQLException{
 	if(conn == null){
 		return ;
 		}	
-		String query = "insert into table Customer (cust_id, name, gender, city, state,zip) values ("+customer.getCustId()+","+customer.getName()+","+customer.getGender()+","+customer.getCity()+","+customer.getState()+","+customer.getZip()+")";
+		String query = "insert into Customer (cust_id, name, gender, city, state,zip) values ('"+customer.getCustId()+"','"+customer.getName()+"','"+customer.getGender()+"','"+customer.getCity()+"','"+customer.getState()+"',"+customer.getZip()+")";
 		statement=conn.prepareStatement(query);
 		
 		statement.executeUpdate();
@@ -37,6 +41,8 @@ public class CustomerDAO {
 		if (conn==null) {
 			return;
 		}
+		
+		
 		
 	}
 
@@ -65,10 +71,31 @@ public void printCustomer(){
 			e.printStackTrace();
 		}
 		}
-	
 
+public void updateAddress(String city, String state, String zipCode, String custid) {
+	String query = "Update Customer set city='"+city+"', state='"+state+"', zip="+zipCode+" where cust_id='"+custid+"'";
+	try {
+		statement=conn.prepareStatement(query);
+		statement.executeUpdate();
+	} catch (SQLException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}
+}
 
-	
+public void deleteCustomer(String custid) {
+ String query= "delete from Customer where cust_id ='"+custid+"'";
+	try {
+		statement=conn.prepareStatement(query);
+		statement.executeUpdate();
+	} catch (SQLException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}
+
+}
+
+}	
 
 
 

@@ -11,9 +11,12 @@ public class CustomerMain {
 		customer.setGender("F");
 		customer.setState("IL");
 		customer.setZip("60111");
-		CustomerDAO cust = new CustomerDAO();
-		cust.createCustomer(customer);
-		cust.printCustomer();
-	 
+		CustomerDAO custDAO = new CustomerDAO();
+		//custDAO.createCustomer(customer);
+		custDAO.printCustomer();
+		//custDAO.updateAddress("Hoffman Esates","IL", "60169", "1003");
+		custDAO.deleteCustomer("1002");
+		
  }
+	
 }
